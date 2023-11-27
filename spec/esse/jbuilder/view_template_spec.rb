@@ -6,15 +6,15 @@ RSpec.describe "Esse::Jbuilder::ViewTemplate" do
   describe ".call", rails: :yes do
     let(:expected_json) do
       {
-        "query" => {
-          "match" => {
-            "name" => "test"
+        query: {
+          match: {
+            name: "test"
           }
         },
-        "aggregations" => {
-          "abbreviations" => {
-            "terms" => {
-              "field" => "state_abbr"
+        aggregations: {
+          abbreviations: {
+            terms: {
+              field: "state_abbr"
             }
           }
         }
