@@ -11,6 +11,8 @@ module Hooks
         if example.metadata[:rails]
           begin
             require "rails"
+            require "jbuilder/jbuilder_template"
+
             ActionView::Template.register_template_handler :jbuilder, ::JbuilderHandler
           rescue LoadError
             skip "Rails is not available"
