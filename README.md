@@ -100,12 +100,14 @@ class Searchers::CitiesSearcher
 
   private
 
+  attr_reader :params
+
   def search
-    CitiesIndex.search(body).limit(@params[:limit] || 10).offset(@params[:offset] || 0)
+    CitiesIndex.search(body: body).limit(params[:limit] || 10).offset(params[:offset] || 0)
   end
 
   def body
-    Esse::Jbuilder::ViewTemplate.('cities/search', **@params)
+    Esse::Jbuilder::ViewTemplate.call('cities/search', **params)
   end
 end
 
