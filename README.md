@@ -78,7 +78,7 @@ CitiesIndex.search do |json|
     end
   end
 end
-
+```
 
 ### Rendering
 
@@ -89,6 +89,7 @@ For more advanced rendering, you can also use the standalone `Esse::Jbuilder::Te
 
 This brings a very powerful to create searcher classes. Example:
 
+```ruby
 class Searchers::CitiesSearcher
   extend Forwardable
   def_delegators :search, :results
