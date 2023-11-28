@@ -2,6 +2,7 @@
 
 require "rails"
 require "jbuilder/jbuilder_template"
+require_relative "search_request_view"
 
 module Esse
   module Jbuilder
@@ -15,6 +16,8 @@ module Esse
     end
 
     class ViewTemplate
+      class_attribute :symbolize_keys, default: false
+
       attr_reader :view_filename, :assigns
 
       def self.call(view_filename, assigns = {})
@@ -27,12 +30,11 @@ module Esse
       end
 
       def to_hash
-        lookup_context = ::ActionView::LookupContext.new(Esse.config.search_view_path)
-        view = ActionView::Base.new(lookup_context, assigns, nil, %i[json])
+        view = Esse::Jbuilder::SearchRequestView.new(assigns)
         hash = JbuilderTemplate.new(view) do |json|
           json._render_template! view_filename
         end.attributes!
-        Esse::HashUtils.deep_transform_keys(hash, &:to_sym)
+        self.class.symbolize_keys ? Esse::HashUtils.deep_transform_keys(hash, &:to_sym) : hash
       end
     end
   end

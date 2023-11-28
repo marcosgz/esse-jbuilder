@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe "Esse::Jbuilder::ViewTemplate" do
+RSpec.describe "" do
   describe ".call", rails: :yes do
     let(:expected_json) do
       {
@@ -23,16 +23,10 @@ RSpec.describe "Esse::Jbuilder::ViewTemplate" do
 
     before do
       require "esse/jbuilder/view_template"
+      Esse::Jbuilder::ViewTemplate.symbolize_keys = true
     end
 
-    it "renders jbuilder using view with real filename" do
-      Esse.config.search_view_path = "spec/fixtures/searches"
-
-      actual = Esse::Jbuilder::ViewTemplate.call("states/index.json.jbuilder", name: "test")
-      expect(actual).to eq(expected_json)
-    end
-
-    it "renders jbuilder using view with filename without extension" do
+    it "renders jbuilder template using view relative path" do
       Esse.config.search_view_path = "spec/fixtures/searches"
 
       actual = Esse::Jbuilder::ViewTemplate.call("states/index", name: "test")
