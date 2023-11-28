@@ -2,6 +2,7 @@
 
 require "rails"
 require "jbuilder/jbuilder_template"
+require_relative "search_request_view"
 
 module Esse
   module Jbuilder
@@ -27,8 +28,7 @@ module Esse
       end
 
       def to_hash
-        lookup_context = ::ActionView::LookupContext.new(Esse.config.search_view_path)
-        view = ActionView::Base.new(lookup_context, assigns, nil, %i[json])
+        view = Esse::Jbuilder::SearchRequestView.new(assigns)
         hash = JbuilderTemplate.new(view) do |json|
           json._render_template! view_filename
         end.attributes!

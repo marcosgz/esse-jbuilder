@@ -18,9 +18,9 @@ module Esse
 
         def render_jbuilder_template(&block)
           if defined?(Rails)
-            lookup_context = ::ActionView::LookupContext.new(Esse.config.search_view_path)
-            context = ActionView::Base.new(lookup_context, {}, nil, %i[json])
-            ::JbuilderTemplate.new(context, &block).attributes!
+            require_relative "view_template"
+            view = Esse::Jbuilder::SearchRequestView.new({})
+            ::JbuilderTemplate.new(view, &block).attributes!
           else
             ::Jbuilder.new(&block).attributes!
           end
