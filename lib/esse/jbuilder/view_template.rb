@@ -16,6 +16,8 @@ module Esse
     end
 
     class ViewTemplate
+      class_attribute :symbolize_keys, default: false
+
       attr_reader :view_filename, :assigns
 
       def self.call(view_filename, assigns = {})
@@ -32,7 +34,7 @@ module Esse
         hash = JbuilderTemplate.new(view) do |json|
           json._render_template! view_filename
         end.attributes!
-        Esse::HashUtils.deep_transform_keys(hash, &:to_sym)
+        self.class.symbolize_keys ? Esse::HashUtils.deep_transform_keys(hash, &:to_sym) : hash
       end
     end
   end

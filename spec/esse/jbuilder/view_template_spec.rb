@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe "Esse::Jbuilder::ViewTemplate" do
+RSpec.describe "" do
   describe ".call", rails: :yes do
     let(:expected_json) do
       {
@@ -23,6 +23,7 @@ RSpec.describe "Esse::Jbuilder::ViewTemplate" do
 
     before do
       require "esse/jbuilder/view_template"
+      Esse::Jbuilder::ViewTemplate.symbolize_keys = true
     end
 
     it "renders jbuilder template using view relative path" do
