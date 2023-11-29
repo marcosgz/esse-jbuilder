@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe "" do
+RSpec.describe "Esse::Jbuilder::ViewTemplate" do
   describe ".call", rails: :yes do
     let(:expected_json) do
       {

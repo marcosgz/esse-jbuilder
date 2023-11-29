@@ -10,7 +10,7 @@ GIT
 PATH
   remote: ..
   specs:
-    esse-jbuilder (0.0.3)
+    esse-jbuilder (0.0.4)
       esse (>= 0.2.4)
       jbuilder (>= 2)
 
