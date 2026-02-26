@@ -26,6 +26,15 @@ module Esse
         new(view_filename, **assigns).to_hash(&block)
       end
 
+      def self.read_template(file_path)
+        @template_cache ||= {}
+        @template_cache[file_path] ||= File.read(file_path)
+      end
+
+      def self.reset_template_cache!
+        @template_cache = {}
+      end
+
       def initialize(view_filename = nil, **assigns)
         @view_filename = view_filename
         @assigns = assigns
@@ -38,9 +47,10 @@ module Esse
           filename = fragments.pop
           filename = "#{filename}.json.jbuilder" unless filename.end_with?(".json.jbuilder")
           rel_path = fragments.join("/")
+          file_path = Esse.config.search_view_path.join("#{rel_path}/#{filename}").to_s
 
           ->(json) {
-            json.instance_eval(File.read(Esse.config.search_view_path.join("#{rel_path}/#{filename}").to_s), view_filename, 1)
+            json.instance_eval(self.class.read_template(file_path), view_filename, 1)
           }
         end
 
