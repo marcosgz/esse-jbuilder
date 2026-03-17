@@ -10,7 +10,12 @@ module Esse
       # object graphs per minute under production traffic, reducing heap
       # fragmentation that causes RSS growth over time.
       def self.lookup_context
-        @lookup_context ||= ::ActionView::LookupContext.new(Esse.config.search_view_path)
+        view_path = Esse.config.search_view_path
+        if @lookup_context.nil? || @lookup_context_path != view_path
+          @lookup_context_path = view_path
+          @lookup_context = ::ActionView::LookupContext.new(view_path)
+        end
+        @lookup_context
       end
 
       def initialize(assings = {})
