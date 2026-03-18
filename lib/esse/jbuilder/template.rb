@@ -14,8 +14,8 @@ module Esse
         __assigns[key]
       end
 
-      def partial!(view_filename, **assigns)
-        raise ::NotImplementedError, "Partial rendering is not supported. Consider using Esse::Jbuilder::ViewTemplate.call instead."
+      def partial!(*)
+        ::Kernel.raise ::NotImplementedError, "Partial rendering is not supported. Consider using Esse::Jbuilder::ViewTemplate.call instead."
       end
     end
 
