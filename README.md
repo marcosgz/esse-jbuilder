@@ -2,6 +2,10 @@
 
 Extends the [esse](https://github.com/marcosgz/esse) search to use [jbuilder](https://github.com/rails/jbuilder) as the default template engine.
 
+## Documentation
+
+Full guides, template configuration, and API reference are published at **[gems.marcosz.com.br/esse-jbuilder](https://gems.marcosz.com.br/esse-jbuilder/)** — part of the [marcosgz Ruby gem catalogue](https://gems.marcosz.com.br).
+
 ## Installation
 
 Add this line to your application's Gemfile:
