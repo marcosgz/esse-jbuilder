@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = "Extensions for the Esse Search using Jbuilder DSL"
   spec.description = "Extends the Esse Search using Jbuilder DSL to build the request body"
   spec.homepage = "https://github.com/marcosgz/esse-jbuilder"
-  spec.license = "MIT"
+  spec.license = "GPL-3.0-or-later"
   spec.required_ruby_version = ">= 2.5.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
